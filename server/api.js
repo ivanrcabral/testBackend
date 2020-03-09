@@ -1,5 +1,6 @@
 import express from "express"
 import { middlewareTypeNumber } from './middlewares/types'
+import { middlewareTokenPass } from './middlewares/authToken'
 let router = express.Router();
 
 const product = {
@@ -15,7 +16,7 @@ const product = {
 * for add more middlewares
 * example router.get('/getProduct', [middlewareTypeNumber, ...], (req, res) => {
 */
-router.get('/getProduct', middlewareTypeNumber, (req, res) => {
+router.get('/getProduct', [middlewareTypeNumber, middlewareTokenPass], (req, res) => {
   res.status(200).send({ error: false, product });
 });
 
